@@ -3,8 +3,8 @@ import networkx as nx
 import geopandas as gpd
 import matplotlib.pyplot as plt
 import pandas as pd
-from Vertex import Vertex
-from Edge import Edge
+from engines.Vertex import Vertex
+from engines.Edge import Edge
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -52,11 +52,12 @@ def build_graph(source,destination):
 		raw_edges = graph.adj[vt]
 		edges = list(graph.adj[vt])
 		for edge in edges:
-			myEdge = Edge(name=raw_edges[edge][0].get("name"), start=vt, end=edge,
-						  weight=raw_edges[edge][0].get("length"))
+			myEdge = Edge(name=raw_edges[edge][0].get("name"), start=vt, end=edge, weight=raw_edges[edge][0].get("length"))
 			vertex.edges.append(myEdge)
-			idx_vt_dict[vertex] = idx
+			idx_vt_dict[vt] = idx
 			vts.append(vertex)
+
+
 	return graph, vts, idx_vt_dict, src_vt, dst_vt
 
 if __name__=='__main__':

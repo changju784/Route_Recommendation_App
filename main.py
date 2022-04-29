@@ -7,7 +7,7 @@ def getShortestPath(src_lon, src_lat, dest_lon, dest_lat):
     src = (src_lon, src_lat)
     dest = (dest_lon, dest_lat)
     graph, vts, idx_vt_dict, src_vt, dst_vt = build_graph.build_graph(src, dest)
-    route, directions, sum = BellmanFord.BellmanFord(vts, idx_vt_dict, src_vt, dest_vt)
+    route, directions, sum = BellmanFord.BellmanFord(vts, idx_vt_dict, src_vt, dst_vt)
     nc = (0.976, 0.411, 0.411, 1.0)
     background = (1.0, 1.0, 1.0, 0.0)
     graph_proj = ox.project_graph(graph)
