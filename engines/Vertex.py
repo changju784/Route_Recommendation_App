@@ -11,4 +11,7 @@ class Vertex:
 		self.distance = -1
 		self.vertex_type = 0 #1 = source, #2 = destination
 		self.edges = list() #connected edges
+		self.key = float('inf')
+		self.parent = -1
+		self.direction = [None, None, None] # name, length, bearing from parents to the node
 
