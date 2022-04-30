@@ -12,9 +12,10 @@ def BellmanFord(Vertex, idx_vt_dict, start, end):
     q.put(src)
     while q:
         node = q.get()
+        if node.vertex_type == 2:
+            break
         visited[node.index] = False
         for edge in node.edges:
-            print(edge.end, start)
             v = idx_vt_dict[edge.end]
             dv = node.key + edge.weight
             if Vertex[v].key > dv:
@@ -27,7 +28,10 @@ def BellmanFord(Vertex, idx_vt_dict, start, end):
     node = Vertex[idx_vt_dict.get(end)]
     dist = node.key
     ro, way = route.calcRoute(node, Vertex, idx_vt_dict)  # Computer travel route and human readable directions
+    print(ro, way)
     return ro, way, dist
+
+
 
 
 

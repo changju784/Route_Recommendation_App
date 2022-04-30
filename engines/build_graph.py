@@ -1,71 +1,34 @@
+from shapely.geometry import Point
 import osmnx as ox
 import networkx as nx
 import geopandas as gpd
-import matplotlib.pyplot as plt
-import pandas as pd
-from engines.Vertex import Vertex
-from engines.Edge import Edge
+from engines.Edge import edge
+from engines.Vertex import vertex
 import warnings
 warnings.filterwarnings("ignore")
 
-'''
-https://automating-gis-processes.github.io/site/notebooks/L6/network-analysis.html
-'''
 
-def build_graph(source,destination):
+def build_graph(start, end):
+    # start = (42.0,-71.0)
+    # end = (42.4,-71.4)
+    G = nx.read_graphml("dataset/bigBoston.graphml", node_type=vertex["osmid"])
+    G = ox.io._convert_node_attr_types(G, vertex)
+    G = ox.io._convert_edge_attr_types(G, edge)
 
-	place_name = "Boston, Massachusetts, USA"
-	try:
-		graph = ox.graph_from_place(place_name, network_type='drive')
-		print('Loaded Boston Map Successfully')
-	except:
-		print('Map Loading Failed')
-		print('Please check your internet connection')
+    if "node_default" in G.graph:
+        del G.graph["node_default"]
+    if "edge_default" in G.graph:
+        del G.graph["edge_default"]
 
-	# Get source and destination vertexes
-	src_vt = ox.get_nearest_node(graph, source, method='euclidean')
-	dst_vt = ox.get_nearest_node(graph, destination, method='euclidean')
-	dst_coordinate = (graph.nodes()[dst_vt]['x'], graph.nodes()[dst_vt]['y'])
+    Gp = ox.project_graph(G)
+    Gc = ox.consolidate_intersections(Gp, rebuild_graph=True, tolerance=20, dead_ends=False)
 
-	# Extract vertexes from the graph
-	raw_vertexes = list(graph.nodes)
-	vts = list()
-	idx_vt_dict = dict()
+    lats = [start[0], end[0]]
+    lngs = [start[1], end[1]]
+    points_list = [Point((lng, lat)) for lat, lng in zip(lats, lngs)]
+    points = gpd.GeoSeries(points_list, crs='epsg:4326')
+    points_proj = points.to_crs(Gp.graph['crs'])
 
-	for idx, vt in enumerate(raw_vertexes):
-		vertex = Vertex(idx, vt)
-		vertex.coordinate = (graph.nodes()[vt]['x'], graph.nodes()[vt]['y'])
-
-		# Check whether current vertex is a source or destination
-		# Source = 1, Destination = 2
-		if vt == src_vt:
-			vertex.vertex_type = 1
-		elif vt == dst_vt:
-			vertex.vertex_type = 2
-
-		# Calculate distance from current vertex
-		if vertex.vertex_type == 2:
-			vertex.distance = 0
-		else:
-			vertex.distance = ox.distance.euclidean_dist_vec(vertex.coordinate[0], vertex.coordinate[1],
-														 dst_coordinate[0], dst_coordinate[1])
-		raw_edges = graph.adj[vt]
-		edges = list(graph.adj[vt])
-		for edge in edges:
-			myEdge = Edge(name=raw_edges[edge][0].get("name"), start=vt, end=edge, weight=raw_edges[edge][0].get("length"))
-			vertex.edges.append(myEdge)
-			idx_vt_dict[vt] = idx
-			vts.append(vertex)
-
-
-	return graph, vts, idx_vt_dict, src_vt, dst_vt
-
-if __name__=='__main__':
-	build_graph((42.383807,-71.116494 ),(42.253763,-71.017757))
-
-
-
-
-
-
-
+    source_node = ox.get_nearest_node(Gc, (points_proj[0].y, points_proj[0].x), method = 'euclidean')
+    target_node = ox.get_nearest_node(Gc, (points_proj[1].y, points_proj[1].x), method = 'euclidean')
+    return Gc, source_node, target_node

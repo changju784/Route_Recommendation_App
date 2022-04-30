@@ -1,6 +1,9 @@
-class Edge:
-    def __init__(self, name, start, end, weight):
-        self.name = name
-        self.start = start
-        self.end = end
-        self.weight = weight
+edge = {
+    "bearing": float,
+    "grade": float,
+    "grade_abs": float,
+    "length": float,
+    "osmid": int,
+    "speed_kph": float,
+    "travel_time": float,
+}
