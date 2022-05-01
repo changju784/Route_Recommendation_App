@@ -26,20 +26,23 @@ def dijkstra(graph,source,target):
                 else:
                    distances[u] = dist
                    heapq.heappush(heap,(dist,u))
+    # Compute Path from backwards
     path = []
     v = target
     length = 0
-    while v != source:
+    while True:
+        if v == source:
+            break
         path.insert(0, v)
         min = None
         for u, e in graph_pred[v].items():
             if u in distances:
-                if min == None:
+                if not min:
                     min = distances.get(u)
                     v = u
                     length = length + e[0]['length']
                     prev = e[0]['length']
-                elif min > distances.get(u):
+                elif distances.get(u) < min:
                     length = length + e[0]['length'] - prev
                     prev = e[0]['length']
                     min = distances.get(u)
