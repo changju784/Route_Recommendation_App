@@ -8,6 +8,9 @@ warnings.filterwarnings("ignore")
 def getShortestPath(Gc, source_node, target_node):
     d_path, d_len = Dijkstras.dijkstra(Gc, source_node, target_node)
     fig, ax = ox.plot_graph_route(Gc, d_path)
+    print('Total distance between ({0:.2f},{1:.2f}) and ({2:.2f},{3:.2f}) is {4:.2f}'.format(start[0],start[1],
+                                                                                         end[0],end[1],
+                                                                                         d_len))
 
 if __name__ == '__main__':
     start = (42.3570104, -71.0710964)
