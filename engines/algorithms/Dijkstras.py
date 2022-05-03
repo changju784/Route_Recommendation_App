@@ -34,16 +34,16 @@ def dijkstra(graph,source,target):
         if v == source:
             break
         path.insert(0, v)
-        min = None
+        min = float('inf')
         for u, e in graph_pred[v].items():
             if u in distances:
-                if not min:
+                if min == float('inf'):
                     min = distances.get(u)
                     v = u
-                    length = length + e[0]['length']
+                    length += e[0]['length']
                     prev = e[0]['length']
                 elif distances.get(u) < min:
-                    length = length + e[0]['length'] - prev
+                    length += e[0]['length'] - prev
                     prev = e[0]['length']
                     min = distances.get(u)
                     v = u
