@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3cb45244-a788-48db-8ab1-5c8759a41dae" name="Default Changelist" comment="astar">
+    <list default="true" id="f28ab2df-bb60-4b75-89a2-11e8356a3bac" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/input/input.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -28,6 +30,7 @@
     </file-type-list>
   </component>
   <component name="ProjectId" id="28P5oXNn8lqEZqQBmRacqCAgkKI" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />

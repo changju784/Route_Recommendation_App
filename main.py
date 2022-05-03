@@ -3,6 +3,8 @@ import osmnx as ox
 from engines.algorithms import Dijkstras, Astar
 import time
 import warnings
+import sys
+sys.stdin=open('input/input.txt','r')
 warnings.filterwarnings("ignore")
 
 
@@ -35,8 +37,12 @@ def getShortestPath(Gc, source_node, target_node):
 if __name__ == '__main__':
     # start = (42.3570104, -71.0710964)
     # end = (42.3568701, -71.0682476)
-    start = (42.0, -71.0)
-    end = (42.4, -71.4)
+    location = []
+    for _ in range(2):
+        lat, lon = map(float, input().split())
+        location.append((lat,lon))
+    start = (location[0][0],location[0][1])
+    end = (location[1][0],location[1][1])
     Gc, src, target = build_graph.build_graph(start, end)
     print('==== Graph Loaded ====')
     getShortestPath(Gc, src, target)

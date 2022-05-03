@@ -7,7 +7,7 @@ from engines.Vertex import vertex
 import warnings
 warnings.filterwarnings("ignore")
 
-FILE_PATH = "dataset/Boston.graphml"
+FILE_PATH = "input/Boston.graphml"
 
 def calc_latlong(Graph, lat, long):
     target_xy = (lat, long)
