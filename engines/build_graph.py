@@ -9,8 +9,6 @@ warnings.filterwarnings("ignore")
 
 
 def build_graph(start, end):
-    # start = (42.0,-71.0)
-    # end = (42.4,-71.4)
     G = nx.read_graphml("dataset/bigBoston.graphml", node_type=vertex["osmid"])
     G = ox.io._convert_node_attr_types(G, vertex)
     G = ox.io._convert_edge_attr_types(G, edge)
