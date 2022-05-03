@@ -9,7 +9,7 @@ warnings.filterwarnings("ignore")
 
 
 def build_graph(start, end):
-    G = nx.read_graphml("dataset/bigBoston.graphml", node_type=vertex["osmid"])
+    G = nx.read_graphml("dataset/Boston.graphml", node_type=vertex["osmid"])
     G = ox.io._convert_node_attr_types(G, vertex)
     G = ox.io._convert_edge_attr_types(G, edge)
 
