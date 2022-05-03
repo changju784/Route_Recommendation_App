@@ -13,7 +13,7 @@ def heuristics_diagonal(x1, x2, y1, y2):
 
 
 def heuristics_great_circle(x1, x2, y1, y2):
-    radius = 3960.0
+    radius = 3958.8
     gc_d = radius*math.acos((math.cos(x1)*math.cos(x2)*math.cos(y1-y2))+(math.sin(x1)*math.sin(x2)))
     return gc_d
 
