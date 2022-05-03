@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3cb45244-a788-48db-8ab1-5c8759a41dae" name="Default Changelist" comment="engine">
-      <change beforePath="$PROJECT_DIR$/engines/build_graph.py" beforeDir="false" afterPath="$PROJECT_DIR$/engines/build_graph.py" afterDir="false" />
+    <list default="true" id="3cb45244-a788-48db-8ab1-5c8759a41dae" name="Default Changelist" comment="astar">
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -179,7 +178,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651605681300</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="astar">
+      <created>1651614916711</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1651614916711</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -197,6 +203,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="route." />
     <MESSAGE value="engine" />
-    <option name="LAST_COMMIT_MESSAGE" value="engine" />
+    <MESSAGE value="astar" />
+    <option name="LAST_COMMIT_MESSAGE" value="astar" />
   </component>
 </project>

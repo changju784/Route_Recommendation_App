@@ -12,6 +12,7 @@ def getShortestPath(Gc, source_node, target_node):
     d_path, d_len = Dijkstras.dijkstra(Gc, source_node, target_node)
     fig, ax = ox.plot_graph_route(Gc, d_path)
     td1 = time.time()
+    print('Total distance between ({0:.2f},{1:.2f}) and ({2:.2f},{3:.2f}) is {4:.2f}.'.format(start[0], start[1], end[0], end[1], d_len))
     print("time for dijkstra: ", (td1-td)/100)
 
     #A* diagonal
@@ -19,6 +20,7 @@ def getShortestPath(Gc, source_node, target_node):
     dp, dl = Astar.asPath(Gc, source_node, target_node, 0)
     fig1, ax1 = ox.plot_graph_route(Gc, dp)
     tad1 = time.time()
+    print('Total distance between ({0:.2f},{1:.2f}) and ({2:.2f},{3:.2f}) is {4:.2f}.'.format(start[0], start[1], end[0], end[1], dl))
     print("time for A* diagonal distance heuristic function: ", (tad1-tad)/100)
 
     #A* great circle
@@ -26,7 +28,9 @@ def getShortestPath(Gc, source_node, target_node):
     dp2, dl2 = Astar.asPath(Gc, source_node, target_node, 1)
     fig2, ax2 = ox.plot_graph_route(Gc, dp)
     tagc2 = time.time()
+    print('Total distance between ({0:.2f},{1:.2f}) and ({2:.2f},{3:.2f}) is {4:.2f}.'.format(start[0], start[1], end[0], end[1], dl2))
     print("time for A* Great Circle Distance heuristic function: ", (tagc2-tagc)/100)
+
 
 if __name__ == '__main__':
     start = (42.3570104, -71.0710964)
