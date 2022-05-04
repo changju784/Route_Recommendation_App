@@ -14,13 +14,15 @@ def calc_latlong(Graph, lat, long):
     target_node = ox.get_nearest_node(Graph, target_xy, method='euclidean')
     return target_node
 
-def build_graph(start, end):
-    map = nx.read_graphml(FILE_PATH, node_type=vertex["osmid"])
-    map = ox.io._convert_node_attr_types(map, vertex)
-    map = ox.io._convert_edge_attr_types(map, edge)
-    Gmap = ox.load_graphml(FILE_PATH)
+def build_graph(G, Map, start, end):
+    # map = nx.read_graphml(FILE_PATH, node_type=vertex["osmid"])
+    # map = ox.io._convert_node_attr_types(map, vertex)
+    # map = ox.io._convert_edge_attr_types(map, edge)
+    # Gmap = ox.load_graphml(FILE_PATH)
+    Gmap = G
+    map = Map
 
-    #Test if there is a patch between start and end
+    #Test if there is a path between start and end
     start_node = calc_latlong(Gmap,start[0],start[1])
     end_node = calc_latlong(Gmap,end[0],end[1])
     if not nx.algorithms.shortest_paths.generic.has_path(Gmap, start_node, end_node):
